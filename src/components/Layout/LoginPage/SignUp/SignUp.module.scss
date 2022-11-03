@@ -1,0 +1,14 @@
+@import "../Login/Login.module.scss";
+
+.sign-up {
+  .form-group--checkbox {
+    text-align: left;
+  }
+  input[type="checkbox"] {
+    width: unset;
+    margin-right: 5px;
+  }
+  button {
+    margin: 0 10px;
+  }
+}

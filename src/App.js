@@ -1,9 +1,10 @@
 import "./App.css";
+import LoginPage from "./components/Layout/LoginPage";
 
 function App() {
   return (
     <div className="App">
-      <h1>React App</h1>
+      <LoginPage />
     </div>
   );
 }

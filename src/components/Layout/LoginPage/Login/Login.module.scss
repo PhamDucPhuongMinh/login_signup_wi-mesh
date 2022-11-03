@@ -1,0 +1,61 @@
+// css login and sign up form
+
+.login,
+.sign-up {
+  h4 {
+    font-size: 3rem;
+    font-weight: 600;
+  }
+  p {
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: #b5b5c3;
+    button {
+      font-size: inherit;
+      font-weight: 600;
+    }
+  }
+}
+
+.login__form,
+.sign-up__form {
+  margin-top: 40px;
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 30px;
+  .form-group__label {
+    color: var(--black);
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+  }
+  input {
+    font-size: 1.4rem;
+    padding: 24px 20px;
+    width: 100%;
+    outline: none;
+    border: none;
+    background-color: #f3f6f9;
+    transition: all 0.2s linear;
+    border-radius: 10px;
+    &:focus {
+      background-color: #ebedf3;
+    }
+  }
+  .form-group__danger {
+    font-size: 1.2rem;
+    text-align: left;
+    margin-top: 5px;
+    color: #f64e60;
+  }
+}
+
+.form__btn {
+  padding: 15px 25px;
+  font-size: 1.6rem;
+  margin: 30px auto 0;
+}
