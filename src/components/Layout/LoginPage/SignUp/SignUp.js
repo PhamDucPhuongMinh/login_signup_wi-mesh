@@ -11,11 +11,19 @@ export default function SignUp({ onChangeForm }) {
   const {
     register,
     formState: { errors },
+    resetField,
     watch,
     handleSubmit,
   } = useForm({
     criteriaMode: "all",
     mode: "all",
+    defaultValues: {
+      fullName: "",
+      phoneNumber: "",
+      password: "",
+      comfirmPassword: "",
+      acceptTerms: false,
+    },
   });
 
   const password = useRef({});
@@ -25,9 +33,16 @@ export default function SignUp({ onChangeForm }) {
     delete data["comfirmPassword"];
     delete data["acceptTerms"];
     registerUser(data).then((res) => {
-      console.log(res);
+      if (res) onChangeForm();
+      else {
+        resetField("fullName");
+        resetField("phoneNumber");
+        resetField("password");
+        resetField("comfirmPassword");
+        resetField("acceptTerms");
+        alert("Sign up failed");
+      }
     });
-    onChangeForm();
   };
 
   return (

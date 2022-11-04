@@ -1,0 +1,20 @@
+.home-page {
+  text-align: center;
+  padding-top: 50px;
+  h4 {
+    font-size: 4rem;
+    font-weight: 500;
+  }
+  p {
+    font-size: 3rem;
+    margin-top: 20px;
+    span {
+      color: var(--primary);
+    }
+  }
+  button {
+    font-size: 2rem;
+    margin-top: 30px;
+    padding: 10px 20px;
+  }
+}
