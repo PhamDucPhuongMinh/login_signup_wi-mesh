@@ -3,6 +3,7 @@ import classNames from "classnames/bind";
 import { ErrorMessage } from "@hookform/error-message";
 import { useForm } from "react-hook-form";
 import styles from "./Login.module.scss";
+import { login } from "../../../../firebase/fakeAPI";
 
 const cx = classNames.bind(styles);
 
@@ -16,7 +17,12 @@ export default function Login({ onChangeForm }) {
     mode: "all",
   });
 
-  const onHandleSubmit = (data) => console.log(data);
+  const onHandleSubmit = (data) => {
+    const resultLogin = login(data["phone-number"], data["password"]);
+    resultLogin.then((res) => {
+      res ? alert("Logged in successfully") : alert("Login failed");
+    });
+  };
 
   return (
     <div className={cx("login")}>

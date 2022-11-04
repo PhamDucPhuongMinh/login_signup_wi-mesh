@@ -3,6 +3,7 @@ import classNames from "classnames/bind";
 import { ErrorMessage } from "@hookform/error-message";
 import { useForm } from "react-hook-form";
 import styles from "./SignUp.module.scss";
+import { registerUser } from "../../../../firebase/fakeAPI";
 
 const cx = classNames.bind(styles);
 
@@ -20,7 +21,14 @@ export default function SignUp({ onChangeForm }) {
   const password = useRef({});
   password.current = watch("password", "");
 
-  const onHandleSubmit = (data) => console.log(data);
+  const onHandleSubmit = (data) => {
+    delete data["comfirmPassword"];
+    delete data["acceptTerms"];
+    registerUser(data).then((res) => {
+      console.log(res);
+    });
+    onChangeForm();
+  };
 
   return (
     <div className={cx("sign-up")}>
@@ -33,13 +41,13 @@ export default function SignUp({ onChangeForm }) {
         <div className={cx("form-group")}>
           <input
             placeholder="Fullname"
-            {...register("full-name", {
-              required: "Fullname is required.",
+            {...register("fullName", {
+              required: "FullfullName is required.",
             })}
           />
           <ErrorMessage
             errors={errors}
-            name="full-name"
+            name="name"
             render={({ messages }) => {
               return messages
                 ? Object.entries(messages).map(([type, message]) => (
@@ -55,7 +63,7 @@ export default function SignUp({ onChangeForm }) {
           <input
             placeholder="Phone number"
             type="number"
-            {...register("phone-number", {
+            {...register("phoneNumber", {
               required: "Phone number is required.",
               minLength: {
                 value: 10,
@@ -69,7 +77,7 @@ export default function SignUp({ onChangeForm }) {
           />
           <ErrorMessage
             errors={errors}
-            name="phone-number"
+            name="phoneNumber"
             render={({ messages }) => {
               return messages
                 ? Object.entries(messages).map(([type, message]) => (
@@ -112,7 +120,7 @@ export default function SignUp({ onChangeForm }) {
           <input
             placeholder="Confirm password"
             type="password"
-            {...register("comfirm-password", {
+            {...register("comfirmPassword", {
               required: "Password comfirmation is required.",
               validate: (value) =>
                 value === password.current ||
@@ -121,7 +129,7 @@ export default function SignUp({ onChangeForm }) {
           />
           <ErrorMessage
             errors={errors}
-            name="comfirm-password"
+            name="comfirmPassword"
             render={({ messages }) => {
               return messages
                 ? Object.entries(messages).map(([type, message]) => (
@@ -137,7 +145,7 @@ export default function SignUp({ onChangeForm }) {
           <input
             type="checkbox"
             id="accept-terms"
-            {...register("accept-terms", {
+            {...register("acceptTerms", {
               required: "You must accept the terms and conditions.",
             })}
           />
@@ -155,7 +163,7 @@ export default function SignUp({ onChangeForm }) {
           </label>
           <ErrorMessage
             errors={errors}
-            name="accept-terms"
+            name="acceptTerms"
             render={({ messages }) => {
               return messages
                 ? Object.entries(messages).map(([type, message]) => (
