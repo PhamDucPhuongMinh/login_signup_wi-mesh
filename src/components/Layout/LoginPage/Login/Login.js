@@ -22,6 +22,7 @@ export default function Login({ onChangeForm }) {
   });
 
   const onHandleSubmit = (data) => {
+    // Call API
     const resultLogin = login(data.phoneNumber, data.password);
     resultLogin.then((res) => {
       // res ? alert("Logged in successfully") : alert("Login failed");

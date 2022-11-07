@@ -19,3 +19,14 @@ export async function registerUser(data) {
     return true;
   } else return false;
 }
+
+export async function checkPhoneNumber(phoneNumber) {
+  const docRefSingle = doc(db, "users", phoneNumber);
+  let dataFirebase = await getDoc(docRefSingle);
+  return dataFirebase.data() === undefined ? true : false;
+}
+
+export function checkOTP(OTPSubmit) {
+  const OTP = "123456";
+  return OTPSubmit === OTP;
+}
